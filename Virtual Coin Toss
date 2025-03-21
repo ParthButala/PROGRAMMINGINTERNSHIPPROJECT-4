@@ -1,0 +1,43 @@
+import random
+
+def coin_toss():
+    return random.choice(["Heads", "Tails"])
+
+def multiple_tosses(num_flips):
+    heads_count = 0
+    tails_count = 0
+    
+    for _ in range(num_flips):
+        result = coin_toss()
+        print(f"Toss Result: {result}")
+        
+        if result == "Heads":
+            heads_count += 1
+        else:
+            tails_count += 1
+    
+    total_flips = heads_count + tails_count
+    print("\nSummary:")
+    print(f"Heads: {heads_count} ({(heads_count / total_flips) * 100:.2f}%)")
+    print(f"Tails: {tails_count} ({(tails_count / total_flips) * 100:.2f}%)")
+
+def main():
+    while True:
+        try:
+            num_flips = int(input("Enter the number of coin flips: "))
+            if num_flips <= 0:
+                print("Please enter a positive integer.")
+                continue
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            continue
+        
+        multiple_tosses(num_flips)
+        
+        repeat = input("\nDo you want to toss again? (yes/no): ").strip().lower()
+        if repeat != 'yes':
+            print("Thank you for using the Virtual Coin Toss!")
+            break
+
+if __name__ == "__main__":
+    main()
